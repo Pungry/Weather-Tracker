@@ -18,7 +18,7 @@ header {
 
 .vl {
     border-left: 6px solid black;
-    height: 100vh;
+    height: 80vh;
     position: absolute;
     left: 25vw;
     margin-left: -3px;

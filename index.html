@@ -21,7 +21,7 @@
             </form>
         </div>
         <div class="col-9">
-            <h1 id="city-name">City Name</h1>
+            <h1 id="city-name">City Name</h1><img id="weather-icon">
             <p id="temperature">Temperature: </p>
             <p id="humidity">Humidity: </p>
             <p id="wind-speed">Wind speed: </p>
@@ -33,43 +33,43 @@
                 <div id="card-zone">
                     <div class="card-group">
                         <div class="card col-3 text-white bg-primary">
-                        <img src="..." class="card-img-top" alt="...">
+                        <img id = "day-1-icon" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <h5 id = "day-1-date" class="card-title">Card title</h5>
+                            <p class="card-text" id = "day-1-temp">Temp</p>
+                            <p class="card-text" id = "day-1-humidity">Humidity</p>
                             </div>
                         </div>
                         <div class="card col-3 text-white bg-primary">
-                        <img src="..." class="card-img-top" alt="...">
+                        <img id = "day-2-icon" class="card-img-top" alt="...">
                         <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h5 id = "day-2-date" class="card-title">Card title</h5>
+                        <p class="card-text" id = "day-2-temp">Temp</p>
+                        <p class="card-text" id = "day-2-humidity">Humidity</p>
                       </div>
                     </div>
                     <div class="card col-3 text-white bg-primary">
-                      <img src="..." class="card-img-top" alt="...">
+                      <img id = "day-3-icon" class="card-img-top" alt="...">
                       <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h5 id = "day-3-date" class="card-title">Card title</h5>
+                        <p class="card-text" id = "day-3-temp">Temp</p>
+                        <p class="card-text" id = "day-3-humidity">Humidity</p>
                       </div>
                     </div>
                     <div class="card col-3 text-white bg-primary">
-                        <img src="..." class="card-img-top" alt="...">
+                        <img id = "day-4-icon" class="card-img-top" alt="...">
                         <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          <h5 id = "day-4-date" class="card-title">Card title</h5>
+                          <p class="card-text" id = "day-4-temp">Temp</p>
+                          <p class="card-text" id = "day-4-humidity">Humidity</p>
                         </div>
                       </div>
                       <div class="card col-3 text-white bg-primary">
-                        <img src="..." class="card-img-top" alt="...">
+                        <img id = "day-5-icon" class="card-img-top" alt="...">
                         <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          <h5 id = "day-5-date" class="card-title">Card title</h5>
+                          <p class="card-text" id = "day-5-temp">Temp</p>
+                          <p class="card-text" id = "day-5-humidity">Humidity</p>
                         </div>
                       </div>
                   </div>
@@ -83,6 +83,7 @@
 Column on right side splits into two squares--will need to review rows/subrows in Bootstrap to code.-->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
