@@ -1,3 +1,40 @@
 body {
-    background-color: blue;
+    background-color: lightblue;
 }
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+h3 {
+    position: relative;
+    right: 8vw;
+}
+
+header {
+    background-color: black;
+}
+
+.vl {
+    border-left: 6px solid black;
+    height: 100vh;
+    position: absolute;
+    left: 25vw;
+    margin-left: -3px;
+  }
+
+  .form-control {
+      position: relative;
+      right: 8vw;
+  }
+
+  #search {
+      position: relative;
+      top: -6vh;
+      left: 8vw;
+  }
+
+  .old-searches {
+    padding-top: 4vh;
+  }
