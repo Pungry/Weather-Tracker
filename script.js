@@ -10,10 +10,27 @@ console.log("hello");
 //Store multiple recent search results on the left column and on click have it repopulate the right column with the saved search city
 
 //Main function that is called any time a user wishes to search weather
-// var citySearch = function(city)
-// {
-//     city.weather
-// }
+$("#search").on("click", function(event){
+    event.preventDefault();
+    var cityInput = $("#city-input").val().trim();
+    if (cityInput)
+        {
+        citySearch(cityInput);
+        }
+})
+
+var citySearch = function(city)
+{
+    console.log(city);
+    var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=941384f3ad9319cea1d15e58a1f228c4id";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+    })
+}
 
 //function to render buttons
 //var renderSearches = function() {
@@ -28,7 +45,7 @@ console.log("hello");
 //};
 //click event on past searches; written this way so the dynamically generated buttons can be clicked
 //$(document).on("click", ".oldSearch", function(event){
-    //var searchTerm = $(this).val();
+    //var searchTerm = $(this).attr("data-name");
     //citySearch(searchTerm);
 //})
 //function that runs on refresh to show the past searches
