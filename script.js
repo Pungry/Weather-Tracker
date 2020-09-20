@@ -1,16 +1,4 @@
-console.log("hello");
-var searches = [];
-
-//Connect to openWeather API. Write a function that pulls data in the city that the user searches for, passing the string typed by the user as the variable getting searched. IE: $("#searchButton").on.("click", function(event){
-//     var userSearch = $(event).text
-//     cityWeather(userSearch);
-// })
-
-//Store whatever that last search result in localStorage and have it show up when the user reopens the page
-
-//Store multiple recent search results on the left column and on click have it repopulate the right column with the saved search city
-
-//Main function that is called any time a user wishes to search weather
+//Main function that is called any time a user wishes to search weather by using the search form. It trims the user's input and sends it to citySearch to actually take care of searching the weather.
 $("#search").on("click", function(event){
     event.preventDefault();
     var cityInput = $("#city-input").val().trim();
@@ -20,9 +8,15 @@ $("#search").on("click", function(event){
         }
 })
 
+//This is the function at the heart of the app. It takes the search term as a parameter and runs three AJAX requests for weather info.
 var citySearch = function(city)
 {
-    console.log(city);
+    //This is checking if an old search button was pressed, and changes the queryURL to search for that old search city instead.
+    if ($(this).attr("data-search"))
+    {
+        city = $(this).attr("data-search");
+    }
+    //If no saved search button was pressed, the city that was put in the form is instead used.
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&cnt=5&appid=941384f3ad9319cea1d15e58a1f228c4";
 
     $.ajax({
@@ -32,7 +26,6 @@ var citySearch = function(city)
         var cityName = response.name;
         $("#city-name").text(cityName + moment().format(" M/D/YY"));
         var iconID = response.weather[0].icon;
-        console.log(response);
         var iconURL =  "http://openweathermap.org/img/wn/" + iconID + "@2x.png";
         $("#weather-icon").attr("src", iconURL);
         var newTemp = $("#temperature");
@@ -53,7 +46,6 @@ var citySearch = function(city)
             method: "GET"
         }).then(function(uvresponse)
         {
-            console.log(uvresponse.value);
             var newUV = $("#uv-index");
             if (Math.floor(uvresponse.value) === 0 || Math.floor(uvresponse.value) === 1 || Math.floor(uvresponse.value) === 2 || Math.floor(uvresponse.value) === 3)
             {
@@ -68,17 +60,16 @@ var citySearch = function(city)
                 newUV.addClass("text-danger");
             }
             newUV.text("UV Index: " + uvresponse.value);
-            console.log(uvresponse);
         })
 
-        //Five day forecast time; first, all the dates are together because they rely on taking current date from Moment
+    //For the five day forecast, all the dates are grouped together because they rely on taking current date from Moment
     $("#day-1-date").text(moment().add(1, 'days').format('l'));
     $("#day-2-date").text(moment().add(2, 'days').format('l'));
     $("#day-3-date").text(moment().add(3, 'days').format('l'));
     $("#day-4-date").text(moment().add(4, 'days').format('l'));
     $("#day-5-date").text(moment().add(5, 'days').format('l'));
     
-    //One call forecast AJAX for next five days of info.
+    //One call forecast AJAX for next five days of info. Three AJAX requests in one function!
     var forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latCoor + "&lon=" + lonCoor + "&appid=941384f3ad9319cea1d15e58a1f228c4";
     $.ajax({
         url: forecastURL, 
@@ -120,30 +111,20 @@ var citySearch = function(city)
             var day5IconURL = "http://openweathermap.org/img/wn/" + day5Icon + "@2x.png";
             $("#day-5-icon").attr("src", day5IconURL);
         })
-
-        // //var savedSearch = $("<button>");
-        // var savedSearch = response.name;
-        // //send to localStorage here
-        // localStorage.setItem(pastSearches, savedSearch);
-        // renderSearches();
+        //Saving the search as the last search and constantly overwriting it as it changes.
+        localStorage.setItem("lastSearch", cityName);
+        
+        //This set of code is making a button that populates the left side of the screen with the previously done searches.
+        var savedSearch = $("<button>");
+        savedSearch.text(cityName);
+        savedSearch.attr("data-search", cityName);
+        savedSearch.addClass("btn btn-primary old-search");
+        $(".old-searches").prepend(savedSearch);
     })
 }
 
-//function to render buttons
-// var renderSearches = function() {
-//     for (var i = 0; i < searches.length; i++)
-//     {
-//         var printPast = localStorage.getItem(pastSearches, searches[i])
-//         var newButton = $("<button>")
-//         newButton.text(printPast);
-//         newButton.addClass(oldSearch)
-//         $(".old-searches").prepend(newButton)
-//     }
-// };
-//click event on past searches; written this way so the dynamically generated buttons can be clicked
-//$(document).on("click", ".oldSearch", function(event){
-    //var searchTerm = $(this).attr("data-name");
-    //citySearch(searchTerm);
-//})
-//function that runs on refresh to show the past searches
-//renderSearches();
+//Runs the last search the user did before closing the tab when the tab is opened again.
+citySearch(localStorage.getItem("lastSearch"));
+
+//Whenever a saved search button is clicked, the citySearch function fires again.
+$(document).on("click", ".old-search", citySearch);

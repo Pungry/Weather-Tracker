@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Tracker? I hardly know er!</title>
+    <title>Weather Tracker</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,8 +17,9 @@
                 <h3>Search for a city:</h3>
                 <input id="city-input" class="form-control" type="text" placeholder="City Name" aria-label="Search">
                 <button id="search" class="btn btn-outline-success">Search</button>
-                <div class="old-searches">Hi</div>
             </form>
+            <h5>Saved Searches:</h5>
+            <div class="old-searches"></div>
         </div>
         <div class="col-9">
             <h1 id="city-name">City Name</h1><img id="weather-icon">
